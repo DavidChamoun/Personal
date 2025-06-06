@@ -70,18 +70,38 @@ html {
 /*scrollbar*/
 
 ::-webkit-scrollbar {
-  width: 10px;
+  display: none;
 }
 
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background: gray;
   border-radius: 10px;
+} */
+
+/* Body */
+html, body {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll; /* ensure scrollable */
+  height: 100%;        /* recommended to set full height */
 }
+
+section {
+  scroll-snap-align: start;
+  padding: 150px 0;
+  box-sizing: border-box;
+}
+
+header {
+  scroll-snap-align: start;
+}
+/* Body */
 
 /* Navbar */
 
 .navbar {
   position: fixed;
+  font-size: 14px;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.2);
@@ -198,7 +218,8 @@ header {
 /* Events */
 section {
   width: 80%;
-  margin: 80px auto;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 .title {
@@ -370,7 +391,7 @@ section {
 #about_us {
   background: url("https://awe365.com/wp-content/uploads/2013/07/adventure-sports-hang-gliding-flickrcc-image-by-Steve-Slater.jpg");
   width: 100%;
-  height: 630px;
+  height: auto;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -766,7 +787,7 @@ body.dark{
 }
 
 .fa-sun-o {
-  color: yellow;
+  color: white;
 }
 
 .color{
@@ -807,7 +828,7 @@ body.dark{
 		position: relative;
 		top: -86%;
 		width: 100%;
-		height: 100%;
+		height: 90%;
 		border-width: 0 .8vmin 0 0;
 		border-style: solid;
 		border-color:  #fff;
@@ -945,17 +966,26 @@ input[type=radio] {
   margin: auto;
   transition: transform .4s ease;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .containerx {
   width: 100%;
+  box-sizing: border-box;
   height: 50vh;
   transform-style: preserve-3d;
+}
+
+.bpxx{
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
 }
 
 .cards {
   position: relative;
   width: 100vh;
+  box-sizing: border-box;
   height: 100%;
 }
 
