@@ -97,36 +97,35 @@ function topFunction() {
 }
 
 // Update Navbar While Scrolling
-function updateNav() {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-links li a");
+const sections = document.querySelectorAll("section");
+const header = document.querySelectorAll("header");
+const navLinks = document.querySelectorAll(".nav-links li a");
 
-    sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute("id");
 
-        if (window.screen.width <= 425) {
-            if (rect.top <= 1300) {
-                navLinks.forEach((navLink) => {
-                    navLink.classList.remove("active");
-                });
-                navLinks[index].classList.add("active");
-            }
-        } else if (425 <= window.screen.width <= 768) {
-            if (rect.top <= 1250) {
-                navLinks.forEach((navLink) => {
-                    navLink.classList.remove("active");
-                });
-                navLinks[index].classList.add("active");
-            }
-        } else {
-            if (rect.top <= 1000) {
-                navLinks.forEach((navLink) => {
-                    navLink.classList.remove("active");
-                });
-                navLinks[index].classList.add("active");
-            }
-        }
+      if (entry.isIntersecting) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${id}` || link.getAttribute("onclick")?.includes(id)) {
+            link.classList.add("active");
+          }
+        });
+      }
     });
-}
+  },
+  {
+    root: null,
+    threshold: 0.6, // Adjust based on how much of the section must be visible
+  }
+);
 
-window.addEventListener("scroll", updateNav);
+sections.forEach((section) => {
+  observer.observe(section);
+});
+header.forEach((header) => {
+  observer.observe(header);
+});
+
