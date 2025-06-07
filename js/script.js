@@ -129,3 +129,13 @@ header.forEach((header) => {
   observer.observe(header);
 });
 
+
+function updateSectionPadding() {
+  const navBarHeight = document.querySelector(".navbar").offsetHeight;
+  sections.forEach(section => {
+    section.style.paddingTop = `${navBarHeight}px`;
+  });
+}
+
+window.addEventListener("resize", updateSectionPadding);
+window.addEventListener("load", updateSectionPadding);
